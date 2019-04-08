@@ -85,14 +85,6 @@ def default_class_loader(module_label, classnames, module_prefix):
             ``ImportError``, it is re-raised
     """
 
-    if '.' not in module_label:
-        # Importing from top-level modules is not supported, e.g.
-        # get_class('shipping', 'Scale'). That should be easy to fix,
-        # but @maikhoepfel had a stab and could not get it working reliably.
-        # Overridable classes in a __init__.py might not be a good idea anyway.
-        raise ValueError(
-            "Importing from top-level modules is not supported")
-
     # import from Oscar package (should succeed in most cases)
     # e.g. 'oscar.apps.dashboard.catalogue.forms'
     oscar_module_label = "%s.%s" % (module_prefix, module_label)
